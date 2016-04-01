@@ -2,6 +2,7 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotorController;
 
 
 /**
@@ -21,7 +22,10 @@ public class telemetryTest extends OpMode {
         rightMoto = hardwareMap.dcMotor.get("rightMoto");
         rack = hardwareMap.dcMotor.get("rack");
         winch = hardwareMap.dcMotor.get("winch");
-
+        leftMotor.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+        rightMoto.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+        leftMotor.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODERS);
+        leftMotor.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODERS);
 
         //reverse the right motor
       //  leftMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -72,6 +76,7 @@ public class telemetryTest extends OpMode {
         }
         telemetry.addData("LeftMotor", leftMotor.getPower());
         telemetry.addData("RightMotor", rightMoto.getPower());
+        telemetry.addData(leftMotor.getCurrentPosition());
 
     }
 
