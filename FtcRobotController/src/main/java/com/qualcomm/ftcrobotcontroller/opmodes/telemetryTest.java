@@ -74,9 +74,10 @@ public class telemetryTest extends OpMode {
         } else {
             rightMoto.setPower(-right2);
         }
-        telemetry.addData("LeftMotor", leftMotor.getPower());
-        telemetry.addData("RightMotor", rightMoto.getPower());
-        telemetry.addData(leftMotor.getCurrentPosition());
+        telemetry.addData("LeftMotor Pwr", leftMotor.getPower());
+        telemetry.addData("RightMotor Pwr", rightMoto.getPower());
+        telemetry.addData("LeftMotor Pos", leftMotor.getCurrentPosition());
+        telemetry.addData("RightMotor Pos", (rightMoto.getCurrentPosition());
 
     }
 
