@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
  */
 
 public class telemetryTest extends OpMode {
+    //declare variables that will represent motors to make life eaiser
     DcMotor leftMotor;
     DcMotor rightMoto;
     DcMotor rack;
@@ -36,16 +37,19 @@ public class telemetryTest extends OpMode {
         // so we need to reverse the values
         double leftY = gamepad1.left_stick_y;
         double rightY = gamepad1.right_trigger;
+        //remap the value of right y stick to match what we need.
         double roY = rightY - 0.5;
         double rY = roY * 2;
+        //make the control system exponential for fine detail.
         double left2 = leftY * leftY;
         double right2 = rY * rY;
+        //read the buttons that control the winch and the rack.
         boolean rackPower1 = gamepad1.a;
         boolean rackPower2 = gamepad1.x;
         boolean winchPower1 = gamepad1.b;
         boolean winchPower2 = gamepad1.y;
 
-
+        //read the values of the rack buttons to control rack
         if(rackPower1 == true) {
             rack.setPower(1);
         } else if(rackPower2 == true) {
@@ -53,6 +57,7 @@ public class telemetryTest extends OpMode {
         } else {
             rack.setPower(0);
         }
+        //read buttons to control winch
         if(winchPower1 == true) {
             winch.setPower(1);
         } else if(winchPower2 == true) {
@@ -60,6 +65,8 @@ public class telemetryTest extends OpMode {
         } else {
             winch.setPower(0);
         }
+
+        //read left and right gamepads to control winch
         if(leftY < 0) {
             leftMotor.setPower(-left2);
         } else {
@@ -70,6 +77,7 @@ public class telemetryTest extends OpMode {
         } else {
             rightMoto.setPower(-right2);
         }
+        //send motor power values to the telemetry interface
         telemetry.addData("LeftMotor", leftMotor.getPower());
         telemetry.addData("RightMotor", rightMoto.getPower());
 
