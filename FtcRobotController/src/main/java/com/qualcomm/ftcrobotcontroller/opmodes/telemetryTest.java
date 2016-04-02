@@ -14,6 +14,8 @@ public class telemetryTest extends OpMode {
     DcMotor rightMoto;
     DcMotor rack;
     DcMotor winch;
+    float leftEnc;
+    float rightEnc;
 
     @Override
     public void init() {
@@ -74,10 +76,14 @@ public class telemetryTest extends OpMode {
         } else {
             rightMoto.setPower(-right2);
         }
+        leftEnc = leftMotor.getCurrentPosition() / 1440;
+        rightEnc = leftMotor.getCurrentPosition() / 1440;
+        // Encoders currently read number of rotations from start (with negative rotations subtracting).
+        //TODO add conversion to distance travled (just to test)
         telemetry.addData("LeftMotor Pwr", leftMotor.getPower());
         telemetry.addData("RightMotor Pwr", rightMoto.getPower());
-        telemetry.addData("LeftMotor Pos", leftMotor.getCurrentPosition());
-        telemetry.addData("RightMotor Pos", (rightMoto.getCurrentPosition()));
+        telemetry.addData("LeftMotor Pos", leftEnc);
+        telemetry.addData("RightMotor Pos", rightEnc);
 
     }
 
