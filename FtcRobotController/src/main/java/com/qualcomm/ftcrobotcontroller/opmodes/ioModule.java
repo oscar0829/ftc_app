@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannelController;
 public class ioModule extends LinearOpMode {
    DeviceInterfaceModule cdim;
 
-    byte mode = 1;
+    byte mode = 3;
 
 
     @Override
