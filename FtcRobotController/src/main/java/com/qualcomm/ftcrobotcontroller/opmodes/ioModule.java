@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannelController;
 public class ioModule extends LinearOpMode {
    DeviceInterfaceModule cdim;
 
-    byte mode = 3;
+    byte mode = 2;
 
 
     @Override
@@ -22,20 +22,23 @@ public class ioModule extends LinearOpMode {
         cdim.setDigitalChannelMode(4, DigitalChannelController.Mode.INPUT);
 
         waitForStart();
-        while(opModeIsActive()){
+        cdim.setAnalogOutputMode(0, mode);
+        cdim.setAnalogOutputFrequency(0, 5);
+        cdim.setAnalogOutputVoltage(0, 1023);
+        cdim.setPulseWidthOutputTime(0, 5);
+        cdim.setPulseWidthPeriod(1, 5);
+        while(opModeIsActive()) {
+            cdim.getAnalogInputValue(1);
             cdim.getDigitalChannelState(5);
             cdim.getAnalogInputValue(4);
-            cdim.setPulseWidthOutputTime(0, 5);
-            cdim.setPulseWidthPeriod(1, 5);
-            cdim.setAnalogOutputMode(0, mode);
-            cdim.setAnalogOutputFrequency(0, 150);
-            cdim.setAnalogOutputVoltage(0, 1023);
             cdim.setLED(1, true);
             cdim.setDigitalChannelState(5, true);
             sleep(1000);
             cdim.setLED(1, false);
             cdim.setDigitalChannelState(5, false);
             sleep(1000);
+
+
 
         }
     }
