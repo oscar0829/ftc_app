@@ -29,8 +29,10 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
-package com.qualcomm.ftcrobotcontroller.opmodes;
+package org.firstinspires.ftc.robotcontroller.external.samples;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -38,17 +40,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * TeleOp Mode
- * <p>
- *Enables control of the robot via the gamepad
+ * Demonstrates empty OpMode
  */
-public class NullOp extends OpMode {
+@Autonomous(name = "Concept: NullOp", group = "Concept")
+@Disabled
+public class ConceptNullOp extends OpMode {
 
-  private String startDate;
   private ElapsedTime runtime = new ElapsedTime();
 
   @Override
   public void init() {
+    telemetry.addData("Status", "Initialized");
   }
 
   /*
@@ -57,9 +59,15 @@ public class NullOp extends OpMode {
      */
   @Override
   public void init_loop() {
-    startDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
+  }
+
+  /*
+   * This method will be called ONCE when start is pressed
+   * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#loop()
+   */
+  @Override
+  public void start() {
     runtime.reset();
-    telemetry.addData("Null Op Init Loop", runtime.toString());
   }
 
   /*
@@ -68,7 +76,6 @@ public class NullOp extends OpMode {
    */
   @Override
   public void loop() {
-    telemetry.addData("1 Start", "NullOp started at " + startDate);
-    telemetry.addData("2 Status", "running for " + runtime.toString());
+    telemetry.addData("Status", "Run Time: " + runtime.toString());
   }
 }
