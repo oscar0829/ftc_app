@@ -27,8 +27,3 @@ repositories {
 }
 
 apply from: 'build.release.gradle'
-
-Dependencies {
-    compile project (':ftc-visionlib')
-    compile project (':opencv-java')
-}
