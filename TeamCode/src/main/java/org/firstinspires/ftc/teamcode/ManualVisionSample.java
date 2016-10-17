@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import org.lasarobotics.vision.android.Cameras;
 import org.lasarobotics.vision.detection.ColorBlobDetector;
