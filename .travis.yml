@@ -4,8 +4,6 @@ jdk:
 android:
   components:
     - build-tools-21.1.2
-    - build-tools-23.0.2
-    - build-tools-23.0.3
     - tools
     - build-tools-23.0.3
     - build-tools-25.0.0
@@ -30,6 +28,4 @@ script:
   - ./gradlew build connectedCheck
   - ./gradlew build connectedCheck --stacktrace
   - ./gradlew build connectedCheck --info
-  - ./gradlew build connectedCheck --debug
-
-    - $HOME/.gradle/wrapper/
+  - $HOME/.gradle/wrapper/
