@@ -8,6 +8,7 @@ android:
     - build-tools-23.0.2
     - build-tools-23.0.3
     - tools
+    - build-tools-23.0.3
     - build-tools-25.0.0
     - extra-android-support
     - doc-24
@@ -17,15 +18,12 @@ android:
     - android-6
     - android-7
     - android-4.4
-    - android-4.0
     - android-4.2
     - android-23
     - source-24
     - source 23
     - source-19
     - source-17
-    - source 14
-    - addons-google_apis-google-14
     - addon-google_apis-google-19
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
