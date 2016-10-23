@@ -26,6 +26,6 @@ cache:
     - $HOME/.gradle/caches/
 script:
   - ./gradlew build connectedCheck
-  - ./gradlew build connectedCheck --stacktrace
-  - ./gradlew build connectedCheck --info
-  - $HOME/.gradle/wrapper/
+ # - ./gradlew build connectedCheck --stacktrace
+ # - ./gradlew build connectedCheck --info
+#  - $HOME/.gradle/wrapper/
