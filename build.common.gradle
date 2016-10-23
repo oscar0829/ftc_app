@@ -32,7 +32,9 @@ android {
             storePassword 'android'
         }
     }
-
+    lintOptions {
+        abortOnError false
+    }
     defaultConfig {
         applicationId 'com.qualcomm.ftcrobotcontroller'
         minSdkVersion 19

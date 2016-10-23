@@ -25,10 +25,10 @@ public class telemetryTest extends OpMode {
         rightMoto = hardwareMap.dcMotor.get("rightMoto");
         rack = hardwareMap.dcMotor.get("rack");
         winch = hardwareMap.dcMotor.get("winch");
-        leftMotor.setMode(DcMotorController.RunMode.RESET_ENCODERS);
-        rightMoto.setMode(DcMotorController.RunMode.RESET_ENCODERS);
-        leftMotor.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODERS);
-        leftMotor.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODERS);
+        leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightMoto.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         //reverse the right motor
       //  leftMotor.setDirection(DcMotor.Direction.REVERSE);

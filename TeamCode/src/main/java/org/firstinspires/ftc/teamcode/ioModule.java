@@ -28,9 +28,9 @@ public class ioModule extends LinearOpMode {
         cdim.setPulseWidthOutputTime(0, 5);
         cdim.setPulseWidthPeriod(1, 5);
         while(opModeIsActive()) {
-            cdim.getAnalogInputValue(1);
+            cdim.getAnalogInputVoltage(1);
             cdim.getDigitalChannelState(5);
-            cdim.getAnalogInputValue(4);
+            cdim.getAnalogInputVoltage(4);
             cdim.setLED(1, true);
             cdim.setDigitalChannelState(5, true);
             sleep(1000);
