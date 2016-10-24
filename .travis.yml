@@ -7,25 +7,11 @@ android:
     - tools
     - build-tools-23.0.3
     - build-tools-25.0.0
-    - extra-android-support
-    - extra
-    - extra-android-m2repository
-    - extra-google-m2repository
     - android-6
-    - android-7
     - android-4.4
     - android-23
-    - source-24
-    - source 23
-    - source-19
-    - addon-google_apis-google-19
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:
   directories:
     - $HOME/.gradle/caches/
-script:
-  - ./gradlew build connectedCheck
- # - ./gradlew build connectedCheck --stacktrace
- # - ./gradlew build connectedCheck --info
-#  - $HOME/.gradle/wrapper/
