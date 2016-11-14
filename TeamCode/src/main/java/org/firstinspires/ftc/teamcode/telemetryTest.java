@@ -17,6 +17,7 @@ public class telemetryTest extends OpMode {
     DcMotor winch;
     float leftEnc;
     float rightEnc;
+    private JoyStick js = new JoyStick();
 
     @Override
     public void init() {
@@ -83,6 +84,7 @@ public class telemetryTest extends OpMode {
         } else {
             rightMoto.setPower(-right2);
         }
+
         leftEnc = leftMotor.getCurrentPosition() / 1440;
         rightEnc = leftMotor.getCurrentPosition() / 1440;
         // Encoders currently read number of rotations from start (with negative rotations subtracting).
