@@ -14,7 +14,7 @@ public class OperatingArm extends OpMode {
 
                 leftArm = hardwareMap.dcMotor.get("left_arm");
     }
-}
+
 
 public void loop() {
 
@@ -24,4 +24,9 @@ public void loop() {
         leftArm.setPower(0);
     }
     if (gamepad1.b) leftArm.setPower(-0.1);
+}
+
+public void setupArm (String name){
+    leftArm = hardwareMap.dcMotor.get(name);
+    }
 }
