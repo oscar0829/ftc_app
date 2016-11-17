@@ -1,16 +1,16 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 /**
  * Created by Gabe on 11/14/2016.
  */
 
 public class TankDrive extends LinearOpMode {
-    private DcMotor left;
-    private DcMotor right;
+    DcMotor left = hardwareMap.dcMotor.get("leftMotor");
+    DcMotor right = hardwareMap.dcMotor.get("rightMotor");
     @Override
     public void runOpMode() throws InterruptedException {
 

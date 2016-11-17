@@ -17,9 +17,11 @@ public class JoyStick extends LinearOpMode{
           //      rightY = gamepad1.right_trigger;
         }
 
-public double leftY(){
 
-        double leftYAxis = gamepad1.left_stick_y;
+
+public float leftY(){
+
+        float leftYAxis = gamepad1.left_stick_y;
         if(leftYAxis<0){
         leftYAxis=leftYAxis*leftYAxis*-1;
         }else{

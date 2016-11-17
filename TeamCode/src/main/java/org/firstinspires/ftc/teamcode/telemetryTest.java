@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotorController;
@@ -8,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
 /**
  * Created by Gabe on 2/6/2016.
  */
-
+@TeleOp(name="main")
 public class telemetryTest extends OpMode {
     //declare variables that will represent motors to make life eaiser
     DcMotor leftMotor;
@@ -17,8 +18,6 @@ public class telemetryTest extends OpMode {
     DcMotor winch;
     float leftEnc;
     float rightEnc;
-    private JoyStick js = new JoyStick();
-
     @Override
     public void init() {
         //get references to the motors from the hardware map
