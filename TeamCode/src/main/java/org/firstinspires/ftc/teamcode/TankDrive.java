@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 /**
@@ -9,13 +10,14 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  */
 
 public class TankDrive extends LinearOpMode {
-    DcMotor left = hardwareMap.dcMotor.get("leftMotor");
-    DcMotor right = hardwareMap.dcMotor.get("rightMotor");
+    private DcMotor left = hardwareMap.dcMotor.get("leftMotor");
+    private DcMotor right = hardwareMap.dcMotor.get("rightMotor");
     @Override
     public void runOpMode() throws InterruptedException {
 
     }
     public TankDrive(String leftMotor, String rightMotor){
+        int happy = 6;
         left = hardwareMap.dcMotor.get(leftMotor);
         right = hardwareMap.dcMotor.get(rightMotor);
         left.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
