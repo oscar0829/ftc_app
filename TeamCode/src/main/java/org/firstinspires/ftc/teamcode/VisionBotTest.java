@@ -13,18 +13,20 @@ import org.firstinspires.ftc.teamcode.JoyStick;
 
 @TeleOp(name="VisionBot")
 public class VisionBotTest extends OpMode{
-    private JoyStick js = new JoyStick();
-    private TankDrive robot = new TankDrive("leftMotor", "rightMotor");
+    JoyStick js = new JoyStick();
+    TankDrive robot = new TankDrive();
 
 
     @Override
     public void init() {
-
+        robot.init(hardwareMap, "leftMotor", "rightMotor");
+        js.init(gamepad1);
     }
 
     @Override
     public void loop() {
-        robot.tankDrive(js.leftY(), js.rightY());
+        telemetry.addData("Y: ", js.leftY());
+       robot.tankDrive(js.rightY(), js.leftY());
     }
 
 

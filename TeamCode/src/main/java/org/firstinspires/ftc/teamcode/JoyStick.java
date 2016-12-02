@@ -1,27 +1,26 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Gamepad;
+
 /**
  * Created by Gabe on 10/31/2016.
  */
 
-public class JoyStick extends LinearOpMode{
+public class JoyStick{
 
         private float leftY;
         private float rightY;
-
-        @Override
-        public void runOpMode() throws InterruptedException {
-          //      leftY = gamepad1.left_stick_y;
-          //      rightY = gamepad1.right_trigger;
-        }
+        private Gamepad gamepad1;
 
 
+public void init(Gamepad gp){
+    gamepad1 = gp;
+}
 
-public float leftY(){
+public double leftY(){
 
-        float leftYAxis = gamepad1.left_stick_y;
+        double leftYAxis = gamepad1.left_stick_y;
         if(leftYAxis<0){
         leftYAxis=leftYAxis*leftYAxis*-1;
         }else{
@@ -39,6 +38,7 @@ public double rightY(){
         }else{
         rightYAxis=rightYAxis*rightYAxis;
         }
+        rightYAxis = rightYAxis * -1;
         return rightYAxis;
         }
 }
