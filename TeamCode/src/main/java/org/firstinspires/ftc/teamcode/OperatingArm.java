@@ -22,8 +22,9 @@ public void loop() {
         leftArm.setPower(0.1);
     } else {
         leftArm.setPower(0);
+    } if (gamepad1.b){
+        leftArm.setPower(-0.1);
     }
-    if (gamepad1.b) leftArm.setPower(-0.1);
 }
 
 public void setupArm (String name){
