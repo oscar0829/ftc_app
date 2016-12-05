@@ -6,7 +6,11 @@ package org.firstinspires.ftc.teamcode;
 
 public interface BotInterface {
     double leftY(float LYIN);
+<<<<<<< HEAD
     double rightY(float Gying);
+=======
+    double rightY(float tRYIN);
+>>>>>>> refs/remotes/Marsfan/master
 
 
 }
