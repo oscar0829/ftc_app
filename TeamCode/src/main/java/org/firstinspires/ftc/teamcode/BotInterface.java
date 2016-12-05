@@ -6,7 +6,7 @@ package org.firstinspires.ftc.teamcode;
 
 public interface BotInterface {
     double leftY(float LYIN);
-    double rightY(float RYIN);
+    double rightY(float tRYIN);
 
 
 }
