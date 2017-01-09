@@ -23,7 +23,7 @@ public class telemetryTest extends OpMode {
     public void init() {
 
         leftMotor = hardwareMap.dcMotor.get("leftMotor"); //get references to the motors from the hardware map
-        rightMoto = hardwareMap.dcMotor.get("rightMoto");
+        rightMoto = hardwareMap.dcMotor.get("rightMotor");
         rack = hardwareMap.dcMotor.get("rack");
         winch = hardwareMap.dcMotor.get("winch");
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);//motors stop and reset encoder
@@ -43,7 +43,7 @@ public class telemetryTest extends OpMode {
         //note: pushing the stick all the way up returns -1,
         // so we need to reverse the values
         double leftY = gamepad1.left_stick_y;
-        double rightY = gamepad1.right_trigger;
+        double rightY = gamepad1.left_trigger;
         //remap the value of right y stick to match what we need.
         double roY = rightY - 0.5;
         double rY = roY * 2;
