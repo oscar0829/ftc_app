@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class CannonBot extends OpMode {
     JoyStick js = new JoyStick();
     TankDrive robot = new TankDrive();
-    DcMotor sucker;
+    DcMotor loader;
     DcMotor leftTrigger;
 
     @Override
@@ -24,12 +24,12 @@ public class CannonBot extends OpMode {
     public void init() {
         robot.init(hardwareMap, "leftMotor", "rightMotor");
         js.init(gamepad1);
-        boolean suckerPower = gamepad1.dpad_up;
+        boolean loaderPower = gamepad1.dpad_up;
 
-        if (suckerPower == true) {
-            sucker.setPower(1);
+        if (loaderPower == true) {
+            loader.setPower(1);
         } else {
-            sucker.setPower(0);
+            loader.setPower(0);
         }
 
         if (leftTrigger < 0) {
