@@ -10,6 +10,8 @@ import com.qualcomm.robotcore.util.Hardware;
  * Created by oxg0829 on 12/5/2016.
  */
 
+
+@TeleOp(name="2017 Teleop main")
 public class CannonBot extends OpMode {
 
     JoyStick js = new JoyStick();
