@@ -35,15 +35,18 @@ public class VuforiaTest extends LinearOpMode {
         VuforiaTrackables beacons = vuforia.loadTrackablesFromAsset("FTC_2016-17");
         beacons.get(0).setName("Wheels");
         beacons.get(1).setName("Tools");
-        beacons.get(0).setName("Lego");
-        beacons.get(0).setName("Gears");
+        beacons.get(2).setName("Lego");
+        beacons.get(3).setName("Gears");
 
         waitForStart();
+        beacons.activate();
+
+
+        VuforiaTrackableDefaultListener wheels = (VuforiaTrackableDefaultListener) beacons.get(0).getListener();
+
 
         while(opModeIsActive()) {
-            beacons.activate();
-
-            for (int i = 0; i < beacons.size(); i++) {
+            /*for (int i = 0; i < beacons.size(); i++) {
                 VuforiaTrackable beac = beacons.get(i);
                 OpenGLMatrix pose = ((VuforiaTrackableDefaultListener) beac.getListener()).getPose();
 
@@ -61,9 +64,21 @@ public class VuforiaTest extends LinearOpMode {
 
 
                 }
+            }*/
+            if(wheels.getRawPose() != null) {
+                telemetry.addData("degrees to turn", degToRotate(wheels.getPose().getTranslation().get(2), wheels.getPose().getTranslation().get(0)));
+                telemetry.update();
             }
-            telemetry.update();
 
         }
+
+
+    }
+
+
+
+    double degToRotate(double zAxis, double xAxis){
+        double degrees = Math.toDegrees(Math.atan2(zAxis, xAxis));
+        return degrees;
     }
 }
