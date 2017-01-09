@@ -41,8 +41,8 @@ public class CannonBot extends OpMode {
             launcher.setPower(0);
         }
 
-        leftMotor.setPower(js.leftY());
-        rightMotor.setPower(js.rightY());
+        leftMotor.setPower(js.leftY(true));
+        rightMotor.setPower(js.rightY(true));
     }
 
 }
