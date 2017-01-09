@@ -4,38 +4,45 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.Hardware;
 
 /**
  * Created by oxg0829 on 12/5/2016.
  */
 
 public class CannonBot extends OpMode {
-    JoyStick js = new JoyStick();
-    TankDrive robot = new TankDrive();
-    DcMotor loader;
-    DcMotor leftTrigger;
 
-    @Override
-    public void loop() {
-        double leftY = gamepad1.left_trigger;
-    }
+    JoyStick js = new JoyStick();
+    DcMotor loader;
+    DcMotor launcher;
+    DcMotor leftMotor;
+    DcMotor rightMotor;
 
     @Override
     public void init() {
-        robot.init(hardwareMap, "leftMotor", "rightMotor");
+        leftMotor = hardwareMap.dcMotor.get("leftMotor");
+        rightMotor = hardwareMap.dcMotor.get("rightMotor");
+        launcher = hardwareMap.dcMotor.get("launcher");
+        loader = hardwareMap.dcMotor.get("loader");
         js.init(gamepad1);
-        boolean loaderPower = gamepad1.dpad_up;
 
-        if (loaderPower == true) {
+    }
+    @Override
+    public void loop() {
+        if (gamepad1.left_bumper) {
             loader.setPower(1);
         } else {
             loader.setPower(0);
         }
 
-        if (leftTrigger < 0) {
-            leftTrigger.setPower(-1);
+        if (gamepad1.right_bumper) {
+            launcher.setPower(-1);
+        } else {
+            launcher.setPower(0);
         }
-        else {
-            leftTrigger.setPower(0);
-        }
+
+        leftMotor.setPower(js.leftY());
+        rightMotor.setPower(js.rightY());
     }
+
+}
