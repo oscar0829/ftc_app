@@ -40,7 +40,7 @@ public class VisionBotAutomBlue extends LinearOpMode {
         VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId);
         params.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         params.vuforiaLicenseKey = "AQ92H9H/////AAAAGTitPu+5QUlxl/5DeeMeZe9kUysq4fNXHaSrlNBKmasiCDfkzw+g8z6R+f1SZeDvSXrJd7JwHLedujT8NsMHAr8PRfGX011IMcYomFzn9VwS8MyaUXNeMaUzY7NPEC9cLzg0dJrxPWj101l09+K3d1bKa3jEc1271jRgAwzAnI80Eh0g0mK/8mCMW9zdXLjTH1xJ9T7qtTMUN3DQVo2FY3u+askvEVGFashI+6mZtFk4SAgoy2XY1fYqXiZN1Wz1gVCqyF8Hxi9KuoX/awJz+SI/jdgQn2nmp+aHgw1Hcm9oXL5ZB4UMFD7zV94Bg2sLbanoN6h3dTtIpYXGZgDzPWGMgDWisjJV3TvFTTVauFIK";
-
+        params.useExtendedTracking = true;
 
         VuforiaLocalizer vuforia = ClassFactory.createVuforiaLocalizer(params);
         Vuforia.setHint(HINT.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 4);
@@ -51,6 +51,8 @@ public class VisionBotAutomBlue extends LinearOpMode {
         beacons.get(2).setName("Lego");
         beacons.get(3).setName("Gears");
         VuforiaTrackableDefaultListener tools = (VuforiaTrackableDefaultListener) beacons.get(1).getListener();
+        VuforiaTrackableDefaultListener lego = (VuforiaTrackableDefaultListener) beacons.get(2).getListener();
+        VuforiaTrackableDefaultListener gears = (VuforiaTrackableDefaultListener) beacons.get(3).getListener();
 
 
         waitForStart();
@@ -69,18 +71,48 @@ public class VisionBotAutomBlue extends LinearOpMode {
                 VectorF angles = anglesFromTarget(tools);
                 VectorF trans = navOffWall(tools.getPose().getTranslation(), Math.toDegrees(angles.get(0))-90, new VectorF(500, 0, 0));
                 telemetry.addData("trans", trans);
+                telemetry.addData("1", trans.get(0));
+                telemetry.addData("x", Math.toDegrees(angles.get(0)));
+                telemetry.addData("y", Math.toDegrees(angles.get(1)));
+                telemetry.addData("z", Math.toDegrees(angles.get(2)));
+            }
+            if (lego.getRawPose() != null) {
+                VectorF angles = anglesFromTarget(lego);
+                VectorF trans = navOffWall(lego.getPose().getTranslation(), Math.toDegrees(angles.get(0))-90, new VectorF(500, 0, 0));
+                telemetry.addData("trans", trans);
+                telemetry.addData("1", trans.get(0));
+                telemetry.addData("x", Math.toDegrees(angles.get(0)));
+                telemetry.addData("y", Math.toDegrees(angles.get(1)));
+                telemetry.addData("z", Math.toDegrees(angles.get(2)));
+            }
+            if (gears.getRawPose() != null) {
+                VectorF angles = anglesFromTarget(gears);
+                VectorF trans = navOffWall(gears.getPose().getTranslation(), Math.toDegrees(angles.get(0))-90, new VectorF(500, 0, 0));
+                telemetry.addData("trans", trans);
+                telemetry.addData("1", trans.get(0));
                 telemetry.addData("x", Math.toDegrees(angles.get(0)));
                 telemetry.addData("y", Math.toDegrees(angles.get(1)));
                 telemetry.addData("z", Math.toDegrees(angles.get(2)));
 
-                telemetry.update();
             }
+            telemetry.update();
+
+
         }
     }
     public VectorF navOffWall(VectorF trans, double robotAngle, VectorF offWall){
-        return new VectorF((float) (trans.get(0) - offWall.get(0) * Math.sin(Math.toRadians(robotAngle)) - offWall.get(2) * Math.cos(Math.toRadians(robotAngle))), trans.get(1), (float) (trans.get(2) + offWall.get(0) * Math.cos(Math.toRadians(robotAngle)) - offWall.get(2) * Math.sin(Math.toRadians(robotAngle))));
+        return new VectorF((float) (trans.get(0) - offWall.get(0) *
+                Math.sin(Math.toRadians(robotAngle)) - offWall.get(2) *
+                Math.cos(Math.toRadians(robotAngle))), trans.get(1), (float) (trans.get(2) + offWall.get(0) *
+                Math.cos(Math.toRadians(robotAngle)) - offWall.get(2) * Math.sin(Math.toRadians(robotAngle))));
     }
 
-    public VectorF anglesFromTarget(VuforiaTrackableDefaultListener image){ float [] data = image.getRawPose().getData(); float [] [] rotation = {{data[0], data[1]}, {data[4], data[5], data[6]}, {data[8], data[9], data[10]}}; double thetaX = Math.atan2(rotation[2][1], rotation[2][2]); double thetaY = Math.atan2(-rotation[2][0], Math.sqrt(rotation[2][1] * rotation[2][1] + rotation[2][2] * rotation[2][2])); double thetaZ = Math.atan2(rotation[1][0], rotation[0][0]); return new VectorF((float)thetaX, (float)thetaY, (float)thetaZ);
+    public VectorF anglesFromTarget(VuforiaTrackableDefaultListener image){
+        float [] data = image.getRawPose().getData();
+        float [] [] rotation = {{data[0], data[1]}, {data[4], data[5], data[6]}, {data[8], data[9], data[10]}};
+        double thetaX = Math.atan2(rotation[2][1], rotation[2][2]);
+        double thetaY = Math.atan2(-rotation[2][0], Math.sqrt(rotation[2][1] * rotation[2][1] + rotation[2][2] * rotation[2][2]));
+        double thetaZ = Math.atan2(rotation[1][0], rotation[0][0]);
+        return new VectorF((float)thetaX, (float)thetaY, (float)thetaZ);
     }
 }
